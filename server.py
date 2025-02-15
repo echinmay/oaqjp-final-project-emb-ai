@@ -1,3 +1,7 @@
+"""
+Flask server to handle emotion detection API requests. Part of a coursera project
+"""
+
 from flask import Flask, request, jsonify, render_template
 from EmotionDetection import emotion_detector
 
@@ -16,10 +20,8 @@ def detect_emotion():
     Returns: JSON response with emotion analysis.
     """
     data = request.get_json()
-    
     if not data or "text" not in data:
         return jsonify({"error": "Invalid input. Expected JSON: {'text': 'some text'}"}), 400
-    
     text_to_analyze = data["text"]
     result = emotion_detector(text_to_analyze)  # Call emotion detection function
     if 'dominant_emotion' not in result or result["dominant_emotion"] is None:
