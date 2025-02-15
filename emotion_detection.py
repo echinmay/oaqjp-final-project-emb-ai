@@ -11,7 +11,10 @@ def process_response(rsp_j):
             break
     emotions = ['anger', 'disgust', 'fear', 'joy', 'sadness']
     # Lets populate the result dict
-    [result[k] = emotion_d.get(k, 0,0) for k in emotions]
+    
+    for k in emotions:
+        result[k] = emotion_d.get(k, 0.0)
+
     result['dominant_emotion'] = max(result, key=result.get, default='unknown')
     return result
 
